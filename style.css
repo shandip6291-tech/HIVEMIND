@@ -628,6 +628,77 @@ footer{
 }
 /* Custom Scroll Reveal Classes (Safe Mode) */
 .scroll-reveal {
+  /* --- ADMIN THEME SWITCHER & NEON LOOK --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 15px;
+}
+.theme-switch {
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    width: 40px;
+}
+.theme-switch input {
+    display: none;
+}
+.slider {
+    background-color: #233554;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+.slider:before {
+    background-color: #64ffda;
+    bottom: 3px;
+    content: "";
+    height: 14px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 14px;
+}
+input:checked + .slider {
+    background-color: #0a192f;
+    box-shadow: 0 0 10px #00f0ff;
+}
+input:checked + .slider:before {
+    transform: translateX(18px);
+    background-color: #00f0ff;
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Cyberpunk Neon Glow Theme Class */
+.admin-neon-theme {
+    background: linear-gradient(145deg, #0d0221, #0f0c1b) !important;
+    border: 2px solid #00f0ff !important;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3) !important;
+}
+.admin-neon-theme .admin-header {
+    border-bottom: 1px solid #ff007f !important;
+}
+.admin-neon-theme h2 {
+    color: #00f0ff !important;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6) !important;
+}
+.admin-neon-theme button, .admin-neon-theme .btn {
+    background: linear-gradient(90deg, #ff007f, #7928ca) !important;
+    border: none !important;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4) !important;
+}
+  
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;

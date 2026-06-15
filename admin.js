@@ -244,3 +244,28 @@ function showMsg(id,text,type){
   el.textContent=text;el.className='admin-msg '+type;
   setTimeout(()=>el.className='admin-msg',3000);
 }
+// --- DYNAMIC ADMIN THEME TOGGLE FUNCTION ---
+function toggleAdminTheme() {
+    const adminBox = document.getElementById('adminBox');
+    const themeCheckbox = document.getElementById('adminThemeCheckbox');
+    
+    if (themeCheckbox.checked) {
+        adminBox.classList.add('admin-neon-theme');
+        localStorage.setItem('adminTheme', 'neon');
+    } else {
+        adminBox.classList.remove('admin-neon-theme');
+        localStorage.setItem('adminTheme', 'default');
+    }
+}
+
+// Admin panel kholte hi puraani saved theme check karne ke liye (Auto-Load)
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('adminTheme');
+    const themeCheckbox = document.getElementById('adminThemeCheckbox');
+    const adminBox = document.getElementById('adminBox');
+    
+    if (savedTheme === 'neon' && themeCheckbox && adminBox) {
+        themeCheckbox.checked = true;
+        adminBox.classList.add('admin-neon-theme');
+    }
+});

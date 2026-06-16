@@ -45,15 +45,27 @@
 </div>
 
 <script>
-    // Example data: Yahan tumhara fetched data show hoga
-    const enquiries = [
-        { name: "Rahul", time: "12:00 PM", details: "Bot Setup" },
-        { name: "Amit", time: "12:15 PM", details: "UI Customization" }
-    ];
-    const table = document.getElementById('enquiryTable');
-    enquiries.forEach(e => {
-        table.innerHTML += `<tr><td>${e.name}</td><td>${e.time}</td><td>${e.details}</td></tr>`;
-    });
+    const sheetId = "1iHz84NXwN9Zhza6A8R2N9wK8PaLqOzeBtLW1jsBbQQI";
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+    fetch(url)
+        .then(res => res.text())
+        .then(data => {
+            const json = JSON.parse(data.substring(47).slice(0, -2));
+            const rows = json.table.rows;
+            const table = document.getElementById('enquiryTable');
+            
+            rows.forEach(row => {
+                // Sheet ke columns: Name(0), Discord(1), Email(2), Phone(3), Service(4), Budget(5), Details(6)
+                const name = row.c[0]?.v || "-";
+                const details = row.c[6]?.v || "-";
+                const time = "New Entry"; // Sheet se timestamp nikalne ke liye format alag hota hai
+
+                table.innerHTML += `<tr><td>${name}</td><td>${time}</td><td>${details}</td></tr>`;
+            });
+        })
+        .catch(err => console.error("Error loading data:", err));
 </script>
+
 </body>
 </html>
